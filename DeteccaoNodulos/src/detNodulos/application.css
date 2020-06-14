@@ -1,1 +1,23 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Author     : kjpsaycon
+*/
+
+.hyperlink{
+    -fx-text-fill: #cb0006;
+}
+
+.headerPane{
+    -fx-background-color:  derive(grey, -30%);
+    
+} 
+ 
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
