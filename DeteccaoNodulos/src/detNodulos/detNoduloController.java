@@ -3,6 +3,8 @@ package detNodulos;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,19 +103,17 @@ public class detNoduloController {
 		 Image imgDepoisAjuste = imgAntesAjuste;
 		 
 		 try {
-			 	
+			 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewAjustaContraste.fxml"));
+			 Parent root1 = (Parent) fxmlLoader.load();
+			 Stage stage = new Stage();
+			 stage.initModality(Modality.APPLICATION_MODAL);
+			 stage.setTitle("Ajuste de tonalidade");
+			 stage.setScene(new Scene(root1));  
+			 stage.show();
+			 } 
+		 catch (Exception e) {
 			 
-			 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewAjustaContraste.fxml"));
-			    Parent root1 = (Parent) fxmlLoader.load();
-			    Stage stage = new Stage();
-			    stage.initModality(Modality.APPLICATION_MODAL);
-			    stage.setTitle("Ajuste de tonalidade");
-			    stage.setScene(new Scene(root1));  
-			    stage.show();
-			 	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
 		 
 		 
 		 return imgDepoisAjuste;
