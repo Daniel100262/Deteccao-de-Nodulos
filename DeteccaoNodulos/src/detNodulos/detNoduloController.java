@@ -2,14 +2,17 @@ package detNodulos;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class detNoduloController {
 	@FXML ImageView imgOriginal;
@@ -27,9 +30,14 @@ public class detNoduloController {
 	
 	@FXML
 	public void rodarAlgoritmos() {
-		
+		abreModalAjusteTonalidade(img2);
 	}
 	
+	@FXML
+	public void cinzaAritmetica(){
+		img2 = PreProcessamento.cinzaMediaAritmetica(img1, 0, 0, 0);
+		mostraImagemProcessada();
+	}
 	
 	private void mostraImagemProcessada() {
 		imgProcessada.setImage(img2);
@@ -87,4 +95,29 @@ public class detNoduloController {
 		}
 		
 	}
+	
+	 public Image abreModalAjusteTonalidade(Image imgAntesAjuste) {
+		 
+		 Image imgDepoisAjuste = imgAntesAjuste;
+		 
+		 try {
+			 	
+			 
+			 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewAjustaContraste.fxml"));
+			    Parent root1 = (Parent) fxmlLoader.load();
+			    Stage stage = new Stage();
+			    stage.initModality(Modality.APPLICATION_MODAL);
+			    stage.setTitle("Ajuste de tonalidade");
+			    stage.setScene(new Scene(root1));  
+			    stage.show();
+			 	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 
+		 
+		 return imgDepoisAjuste;
+	 }
+	
+	
 }

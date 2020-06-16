@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="645.0" prefWidth="612.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <top>
+      <HBox alignment="CENTER" prefHeight="49.0" prefWidth="612.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" text="Ajuste de tonalidade" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="43.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <VBox prefHeight="595.0" prefWidth="13.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <HBox prefHeight="58.0" prefWidth="612.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="50.0">
+               <children>
+                  <Label text="Contraste" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Slider showTickMarks="true" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="100.0">
+               <children>
+                  <Label text="Brilho" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Slider showTickMarks="true" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="148.0" layoutY="10.0" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="150.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" text="Confirmar" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="537.0" prefWidth="14.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
