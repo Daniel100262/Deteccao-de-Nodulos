@@ -17,10 +17,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class detNoduloController {
+	
 	@FXML ImageView imgOriginal;
 	@FXML ImageView imgProcessada;
-	private Image img1;
-	private Image img2;
+	public Image img1;
+	public Image img2;
+	public static detNoduloController instance;
 	
 	@FXML
 	public void abrirImagem() {
@@ -67,8 +69,6 @@ public class detNoduloController {
 						   "Imagens", "*.jpg", "*.JPG", 
 						   "*.png", "*.PNG", "*.gif", "*.GIF", 
 						   "*.bmp", "*.BMP")); 	
-		   fileChooser.setInitialDirectory(new File(
-				   "G:\\Arquivos_Usuario\\DeskWin10\\imgs"));
 		   File imgSelec = fileChooser.showOpenDialog(null);
 		   try {
 			   if (imgSelec != null) {
@@ -119,5 +119,8 @@ public class detNoduloController {
 		 return imgDepoisAjuste;
 	 }
 	
-	
+	 public void initialize() {
+		 instance = this;
+	 }
+	 
 }
