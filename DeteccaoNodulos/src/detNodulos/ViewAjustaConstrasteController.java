@@ -8,21 +8,30 @@ import javafx.scene.image.ImageView;
 
 public class ViewAjustaConstrasteController {
 	
-    @FXML
-    private Slider slConstraste;
+    @FXML private Slider slConstraste;
 
-    @FXML
-    private Slider slBrilho;
+    @FXML private Slider slBrilho;
+    
+    @FXML private ImageView imgViewTonalidade;
     
     public void initialize() {
-    	ImageView imgViewOriginal = detNoduloController.instance.imgOriginal;
+    	Image imgTonalidade = detNoduloController.instance.img1;
+    	imgViewTonalidade.setImage(imgTonalidade);
     	
     	slConstraste.setOnDragDetected(e -> {
-    		setContrasteImagem(imgViewOriginal);
+    		setContrasteImagem(imgViewTonalidade);
 		});
     	
+    	slConstraste.setOnMousePressed(e -> {
+    		setContrasteImagem(imgViewTonalidade);
+		});;
+    	
     	slBrilho.setOnDragDetected(e -> {
-    		setBrilhoImagem(imgViewOriginal);
+    		setBrilhoImagem(imgViewTonalidade);
+		});
+    	
+    	slBrilho.setOnMousePressed(e -> {
+    		setBrilhoImagem(imgViewTonalidade);
 		});
     	
     }

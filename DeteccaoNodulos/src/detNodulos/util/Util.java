@@ -1,7 +1,6 @@
 package detNodulos.util;
 
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Util {
