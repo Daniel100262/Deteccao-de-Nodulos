@@ -18,21 +18,13 @@ public class ViewAjustaConstrasteController {
     	Image imgTonalidade = detNoduloController.instance.img1;
     	imgViewTonalidade.setImage(imgTonalidade);
     	
-    	slConstraste.setOnDragDetected(e -> {
+    	slConstraste.valueProperty().addListener((observable, oldValue, newValue) -> {
     		setContrasteImagem(imgViewTonalidade);
-		});
+           });
     	
-    	slConstraste.setOnMousePressed(e -> {
-    		setContrasteImagem(imgViewTonalidade);
-		});;
-    	
-    	slBrilho.setOnDragDetected(e -> {
+    	slBrilho.valueProperty().addListener((observable, oldValue, newValue) -> {
     		setBrilhoImagem(imgViewTonalidade);
-		});
-    	
-    	slBrilho.setOnMousePressed(e -> {
-    		setBrilhoImagem(imgViewTonalidade);
-		});
+           });
     	
     }
 
