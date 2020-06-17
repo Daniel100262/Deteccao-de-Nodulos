@@ -1,5 +1,6 @@
 package detNodulos;
 
+
 import detNodulos.util.Util;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
@@ -19,21 +20,22 @@ public class ViewAjustaConstrasteController {
     	imgViewTonalidade.setImage(imgTonalidade);
     	
     	slConstraste.valueProperty().addListener((observable, oldValue, newValue) -> {
-    		setContrasteImagem(imgViewTonalidade);
+    		setContrasteImagem();
            });
     	
     	slBrilho.valueProperty().addListener((observable, oldValue, newValue) -> {
-    		setBrilhoImagem(imgViewTonalidade);
+    		setBrilhoImagem();
            });
+    	
     	
     }
 
-	private void setBrilhoImagem(ImageView imgViewOriginal) {
-		Util.ajustaCor(imgViewOriginal, slBrilho.getValue()/100, "B");
+	private void setBrilhoImagem() {
+		Util.ajustaCor(imgViewTonalidade, slConstraste.getValue()/100, slBrilho.getValue()/100);
 	}
 
-	private void setContrasteImagem(ImageView imgViewOriginal) {
-		Util.ajustaCor(imgViewOriginal, slConstraste.getValue()/100, "C");
+	private void setContrasteImagem() {
+		Util.ajustaCor(imgViewTonalidade, slConstraste.getValue()/100, slBrilho.getValue()/100);
 	}
-
+	
 }
