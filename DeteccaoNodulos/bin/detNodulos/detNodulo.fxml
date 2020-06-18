@@ -41,7 +41,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="149.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#rodarAlgoritmos" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #2a326e; -fx-border-color: #2a3250; -fx-alignment: LEFT;" text="Processar" textFill="#dddddd">
+                  <Button mnemonicParsing="false" onAction="#rodarAlgoritmos" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #2a326e; -fx-border-color: #2a3250; -fx-alignment: CENTER-LEFT;" text="Processar" textFill="#dddddd">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
