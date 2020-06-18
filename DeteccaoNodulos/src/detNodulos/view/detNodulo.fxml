@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="647.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="detNodulos.detNoduloController">
+<BorderPane prefHeight="647.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="detNodulos.control.detNoduloController">
    <top>
       <HBox alignment="CENTER" prefHeight="59.0" prefWidth="903.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icones/iconeAbrir.png" />
+                              <Image url="/detNodulos/icones/iconeAbrir.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -45,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icones/iconeProcessar.png" />
+                              <Image url="/detNodulos/icones/iconeProcessar.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -61,7 +61,7 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icones/IconeSalvar.png" />
+                              <Image url="/detNodulos/icones/IconeSalvar.png" />
                            </image>
                         </ImageView>
                      </graphic>

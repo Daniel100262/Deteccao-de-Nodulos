@@ -1,4 +1,4 @@
-package detNodulos;
+package detNodulos.control;
 
 
 import detNodulos.util.Util;
