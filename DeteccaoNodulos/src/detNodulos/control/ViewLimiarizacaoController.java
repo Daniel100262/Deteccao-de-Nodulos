@@ -21,7 +21,7 @@ public class ViewLimiarizacaoController {
     }
 
 	private void setLimiarImagem(Image img) {
-		detNodulos.PreProcessamento.limiarizacao(img, slLimiar.getValue());
+		imgViewLimiar.setImage(detNodulos.PreProcessamento.limiarizacao(img, slLimiar.getValue()/100));
 	}
 
 }

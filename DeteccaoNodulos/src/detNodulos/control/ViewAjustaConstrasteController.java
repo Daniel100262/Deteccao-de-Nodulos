@@ -1,11 +1,11 @@
 package detNodulos.control;
 
-
 import detNodulos.util.Util;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class ViewAjustaConstrasteController {
 	
@@ -31,10 +31,15 @@ public class ViewAjustaConstrasteController {
 
     @FXML
     public void salvaImgBrilhoContraste() {
-    	detNoduloController.instance.imgBrilhoContrasteAjustado = imgViewTonalidade.getImage();
-    	
+    	detNoduloController.instance.imgBrilhoContrasteAjustado = imgViewTonalidade.snapshot(null, null);
+    	closeWindow();
     }
     		
+	private void closeWindow() {
+	    Stage stage = (Stage) slBrilho.getScene().getWindow(); //pego a instância atual da window à partir de um componente da tela para converter para Stage e poder fechar a janela
+	    stage.close();
+	}
+
 	private void setBrilhoImagem() {
 		Util.ajustaCor(imgViewTonalidade, slConstraste.getValue()/100, slBrilho.getValue()/100);
 	}
@@ -43,8 +48,4 @@ public class ViewAjustaConstrasteController {
 		Util.ajustaCor(imgViewTonalidade, slConstraste.getValue()/100, slBrilho.getValue()/100);
 	}
 
-	public Image getImgViewTonalidade() {
-		return imgViewTonalidade.getImage();
-	}
-	
 }

@@ -3,7 +3,6 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import detNodulos.PreProcessamento;
 import detNodulos.util.Util;
@@ -18,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class detNoduloController {
 	
@@ -46,7 +44,6 @@ public class detNoduloController {
 		abreModalAjusteTonalidade();
 		
 		abreModalAjusteLimiar();
-		
 		
 	}
 	
@@ -138,11 +135,10 @@ public class detNoduloController {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Limiarização");
 			stage.setScene(new Scene(root1));  
-			
 			stage.show();
 		} 
 		catch (Exception e) {
-
+			System.out.println(e.getMessage());
 		}
 	}
 	
