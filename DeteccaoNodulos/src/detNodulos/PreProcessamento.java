@@ -36,9 +36,6 @@ public class PreProcessamento {
 	}
 	
 	
-	
-	
-	
 	public static Image negativa (Image imagem) {
 		try {
 			

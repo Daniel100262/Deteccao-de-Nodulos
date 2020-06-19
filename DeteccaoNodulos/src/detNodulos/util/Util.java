@@ -1,5 +1,7 @@
 package detNodulos.util;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
@@ -42,6 +44,14 @@ public class Util {
 		colorAdjust.setContrast(contrast);
 		colorAdjust.setBrightness(brightness);
 		imgView.setEffect(colorAdjust);
+	}
+	
+	public static void exibeErro(String titulo, String cabecalho, String msg, AlertType tipoAlerta) {
+		Alert alerta = new Alert(tipoAlerta);
+		alerta.setTitle(titulo);
+		alerta.setHeaderText(cabecalho);
+		alerta.setContentText(msg);
+		alerta.showAndWait();
 	}
 	
 }

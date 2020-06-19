@@ -3,18 +3,22 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import detNodulos.PreProcessamento;
+import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class detNoduloController {
 	
@@ -22,6 +26,8 @@ public class detNoduloController {
 	@FXML ImageView imgProcessada;
 	public Image img1;
 	public Image img2;
+	public Image imgNegativo;
+	public Image imgBrilhoContrasteAjustado;
 	public static detNoduloController instance;
 	
 	@FXML
@@ -34,7 +40,14 @@ public class detNoduloController {
 	
 	@FXML
 	public void rodarAlgoritmos() {
-		abreModalAjusteTonalidade(img2);
+		
+		imgNegativo = detNodulos.PreProcessamento.negativa(img1);
+		
+		abreModalAjusteTonalidade();
+		
+		abreModalAjusteLimiar();
+		
+		
 	}
 	
 	@FXML
@@ -98,10 +111,8 @@ public class detNoduloController {
 		
 	}
 	
-	public Image abreModalAjusteTonalidade(Image imgAntesAjuste) {
-
-		Image imgDepoisAjuste = imgAntesAjuste;
-
+	public void abreModalAjusteTonalidade() {
+	
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaContraste.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -109,13 +120,30 @@ public class detNoduloController {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajuste de tonalidade");
 			stage.setScene(new Scene(root1));  
+			stage.showAndWait();
+			
+		} 
+		catch (Exception erro) {
+			Util.exibeErro("ERRO", "Ocorreu uma exceção não tratada", erro.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	
+	public void abreModalAjusteLimiar() {
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewLimiarizacao.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Limiarização");
+			stage.setScene(new Scene(root1));  
+			
 			stage.show();
 		} 
 		catch (Exception e) {
 
 		}
-
-		return imgDepoisAjuste;
 	}
 	
 	 public void initialize() {

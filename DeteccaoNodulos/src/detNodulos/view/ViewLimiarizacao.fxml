@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="645.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="detNodulos.control.ViewAjustaConstrasteController">
+<BorderPane prefHeight="645.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="detNodulos.control.View">
    <top>
       <HBox alignment="CENTER" prefHeight="49.0" prefWidth="612.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" text="Ajuste de tonalidade" textFill="WHITE">
+            <Label alignment="CENTER" text="Limiarização" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="43.0" />
                </font>
@@ -27,29 +27,19 @@
    <bottom>
       <HBox prefHeight="58.0" prefWidth="612.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="50.0">
+            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="297.0" style="-fx-background-color: #2a326e;" translateX="50.0">
                <children>
-                  <Label text="Contraste" textFill="WHITE">
+                  <Label prefHeight="25.0" prefWidth="52.0" text="Limiar" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="slConstraste" showTickMarks="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="100.0">
-               <children>
-                  <Label text="Brilho" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Slider fx:id="slBrilho" showTickMarks="true" />
+                  <Slider fx:id="slLimiar" showTickMarks="true" />
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="148.0" layoutY="10.0" prefHeight="58.0" prefWidth="138.0" style="-fx-background-color: #2a326e;" translateX="150.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#salvaImgBrilhoContraste" prefHeight="38.0" prefWidth="138.0" text="Confirmar" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" text="Confirmar" />
                </children>
             </VBox>
          </children>
@@ -59,6 +49,6 @@
       <VBox prefHeight="537.0" prefWidth="14.0" style="-fx-background-color: #2a326e;" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <ImageView fx:id="imgViewTonalidade" fitHeight="539.0" fitWidth="591.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <ImageView fx:id="imgViewLimiar" fitHeight="539.0" fitWidth="591.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
