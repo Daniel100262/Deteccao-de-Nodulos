@@ -12,7 +12,12 @@ public class ViewLimiarizacaoController {
     
     public void initialize() {
     	Image imgLimiarizar = detNoduloController.instance.imgBrilhoContrasteAjustado;
+    	
+    	slLimiar.setValue(100);
+    	
     	imgViewLimiar.setImage(imgLimiarizar);
+    	
+    	imgViewLimiar.setImage(detNodulos.PreProcessamento.limiarizacao(imgLimiarizar, slLimiar.getValue()/100));
     	
     	slLimiar.valueProperty().addListener((observable, oldValue, newValue) -> {
     		setLimiarImagem(imgLimiarizar);
