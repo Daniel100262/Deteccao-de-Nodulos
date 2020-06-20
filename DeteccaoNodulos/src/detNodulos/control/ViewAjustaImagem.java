@@ -3,6 +3,7 @@ package detNodulos.control;
 import java.io.IOException;
 
 import detNodulos.PreProcessamento;
+import detNodulos.Segmentacao;
 import detNodulos.util.Util;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ public class ViewAjustaImagem {
 	
 	private static final int PAGINA_AJUSTE_TONALIDADE = 0;
 	private static final int PAGINA_AJUSTE_LIMIARIZACAO = 1;
+	private static final int PAGINA_MOSTRA_IMG_SOMADA = 2;
 
 	private static final String CAMINHO_COMPONENTE_VBOXBOTTOM = "../component/VBoxBottom.fxml";
 	
@@ -138,7 +140,7 @@ public class ViewAjustaImagem {
 	
 	private void setEventSliderLimiar(Slider slLimiar) {
 		slLimiar.valueProperty().addListener((observable, oldValue, newValue) -> {
-			imgViewEstadoFinal.setImage(PreProcessamento.limiarizacao(imgViewEstadoInicial.getImage(), slLimiar.getValue()/100));
+			imgViewEstadoFinal.setImage(Segmentacao.limiarizacao(imgViewEstadoInicial.getImage(), slLimiar.getValue()/100));
 		});
 	}
 	

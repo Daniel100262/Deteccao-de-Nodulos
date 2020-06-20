@@ -3,7 +3,6 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
 import detNodulos.PreProcessamento;
 import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
@@ -30,10 +29,9 @@ public class detNoduloController {
 	
 	@FXML
 	public void abrirImagem() {
-		imgOriginal.maxHeight(640);
-		imgOriginal.maxWidth(480);
 		imgOriginal.setPreserveRatio(true);
 		img1 = abreImagem(imgOriginal, img1);
+		mostraImagemProcessada();
 	}
 	
 	@FXML
@@ -55,16 +53,16 @@ public class detNoduloController {
 	}
 	
 	private void mostraImagemProcessada() {
-		imgProcessada.setImage(img2);
-		imgProcessada.setFitWidth(img2.getWidth());
-		imgProcessada.setFitHeight(img2.getHeight());
+		imgProcessada.setImage(img1);
+		imgProcessada.setFitWidth(img1.getWidth());
+		imgProcessada.setFitHeight(img1.getHeight());
 	}
 	
 	
 	private Image abreImagem(ImageView imageView, Image image) {
 		File f = selecionaImagem();
 		if(f != null) {
-			image = new Image(f.toURI().toString());
+			image = new Image(f.toURI().toString(), 640, 440, false, false);
 			imageView.setImage(image);
 			imageView.setFitWidth(image.getWidth());
 			imageView.setFitHeight(image.getHeight());
@@ -103,7 +101,8 @@ public class detNoduloController {
 			try {
 				ImageIO.write(SwingFXUtils.fromFXImage(img2, null), "png", file);
 			} catch (IOException ex) {
-				System.out.println("aconteceu um erro inesperado");
+				Util.exibeErro("ERRO", "Ocorreu um erro de I/O", ex.getMessage(), AlertType.ERROR);
+				ex.printStackTrace();
 			}
 		}
 		
@@ -129,6 +128,7 @@ public class detNoduloController {
 	
 	 public void initialize() {
 		 instance = this;
+		 
 	 }
 	 
 }
