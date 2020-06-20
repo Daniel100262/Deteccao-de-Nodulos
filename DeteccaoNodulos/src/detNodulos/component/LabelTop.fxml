@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+
+<Label alignment="CENTER" text="" textFill="WHITE">
+   <font>
+      <Font name="Calibri" size="43.0" />
+   </font>
+</Label>

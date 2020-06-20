@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #2a326e;" translateX="50.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="detNodulos.control.VBoxBottomController">
+    <Label fx:id="labelSlider" text="" textFill="WHITE">
+       <font>
+          <Font size="16.0" />
+       </font>
+    </Label>
+    <Slider fx:id="slider" showTickMarks="true" />
+   <padding>
+      <Insets left="20.0" />
+   </padding>
+</VBox>

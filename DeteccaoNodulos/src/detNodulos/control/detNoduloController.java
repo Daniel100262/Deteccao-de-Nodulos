@@ -38,13 +38,14 @@ public class detNoduloController {
 	
 	@FXML
 	public void rodarAlgoritmos() {
-		
-		imgNegativo = detNodulos.PreProcessamento.negativa(img1);
-		
-		abreModalAjusteTonalidade();
-		
-		abreModalAjusteLimiar();
-		
+
+		if (img1 != null) {
+			imgNegativo = detNodulos.PreProcessamento.negativa(img1);
+			abreModalAjusteTonalidade();
+		} else {
+			Util.exibeErro("Erro!", "X", "Não é possível abrir o processamento de imagem sem selecionar uma imagem antes.", AlertType.ERROR);
+		}
+
 	}
 	
 	@FXML
@@ -111,34 +112,18 @@ public class detNoduloController {
 	public void abreModalAjusteTonalidade() {
 	
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaContraste.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaImagem.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("Ajuste de tonalidade");
+			stage.setTitle("Ajuste de Imagem");
 			stage.setScene(new Scene(root1));  
 			stage.showAndWait();
 			
 		} 
 		catch (Exception erro) {
 			Util.exibeErro("ERRO", "Ocorreu uma exceção não tratada", erro.getMessage(), AlertType.ERROR);
-		}
-	}
-	
-	
-	public void abreModalAjusteLimiar() {
-		
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewLimiarizacao.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("Limiarização");
-			stage.setScene(new Scene(root1));  
-			stage.show();
-		} 
-		catch (Exception e) {
-			System.out.println(e.getMessage());
+			erro.printStackTrace();
 		}
 	}
 	
