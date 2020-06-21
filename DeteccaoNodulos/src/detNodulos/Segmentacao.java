@@ -25,7 +25,7 @@ public class Segmentacao {
 					 Color corA = pr.getColor(i, j);
 					 Color corN;
 					 
-					 if(corA.getRed()+corA.getBlue()+corA.getGreen() >= 0.666) {
+					 if(corA.getRed()/255 + corA.getBlue()/255 + corA.getGreen()/255 >= 666.0/255.0) {
 						 corN = new Color(1, 1, 1, corA.getOpacity());
 					 }else {
 						 corN = corA;

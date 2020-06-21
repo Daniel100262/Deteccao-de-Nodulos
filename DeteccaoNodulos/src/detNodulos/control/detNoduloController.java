@@ -115,7 +115,8 @@ public class detNoduloController {
 			
 //			Util.exibeErro("ERRO", "Continuou a execução!", "", AlertType.INFORMATION);
 //			img2 = Segmentacao.equalizacaoHistograma(img2, false);
-			img2 = Util.adicao(img1, img2, 0.8,  0.30);
+			//img2 = Util.adicao(img1, img2, 0.8,  0.30);
+			img2 = Segmentacao.posteirizacao(img2);
 			mostraImagemProcessada();
 			
 		} 
