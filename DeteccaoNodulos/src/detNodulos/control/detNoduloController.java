@@ -3,7 +3,8 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import detNodulos.PreProcessamento;
+
+import detNodulos.Segmentacao;
 import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -44,18 +45,12 @@ public class detNoduloController {
 		} else {
 			Util.exibeErro("Erro!", "X", "Não é possível abrir o processamento de imagem sem selecionar uma imagem antes.", AlertType.ERROR);
 		}
-
 	}
 	
-	@FXML
-	public void cinzaAritmetica(){
-		img2 = PreProcessamento.cinzaMediaAritmetica(img1, 0, 0, 0);
-		mostraImagemProcessada();
-	}
+	
 	
 	public void mostraImagemProcessada() {
 		imgProcessada.setImage(img2);
-		
 	}
 	
 	
@@ -113,11 +108,15 @@ public class detNoduloController {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaImagem.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
-			//Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajuste de Imagem");
 			stage.setScene(new Scene(root1));  
 			stage.showAndWait();
+			
+//			Util.exibeErro("ERRO", "Continuou a execução!", "", AlertType.INFORMATION);
+//			img2 = Segmentacao.equalizacaoHistograma(img2, false);
+			img2 = Util.adicao(img1, img2, 0.8,  0.30);
+			mostraImagemProcessada();
 			
 		} 
 		catch (Exception erro) {
@@ -134,17 +133,5 @@ public class detNoduloController {
 	public ImageView getImgOriginal() {
 		return imgOriginal;
 	}
-
-//	public void setImgOriginal(ImageView imgOriginal) {
-//		this.imgOriginal = imgOriginal;
-//	}
-//
-//	public ImageView getImgProcessada() {
-//		return imgProcessada;
-//	}
-//
-//	public void setImgProcessada(ImageView imgProcessada) {
-//		this.imgProcessada = imgProcessada;
-//	}
-//	 
 }
+ 

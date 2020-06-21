@@ -68,7 +68,7 @@ public class ViewAjustaImagem {
 			transformViewStepTwo();
 		} else {
 			//detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
-			detNoduloController.instance.img2 = imgViewEstadoFinal.snapshot(null, null);
+			detNoduloController.instance.img2 = imgViewEstadoFinal.getImage();
 			detNoduloController.instance.mostraImagemProcessada();
 			detNoduloController.instance.stage.close();
 			
