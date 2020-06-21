@@ -19,13 +19,14 @@ import javafx.stage.Stage;
 
 public class detNoduloController {
 	
-	@FXML ImageView imgOriginal;
-	@FXML ImageView imgProcessada;
+	@FXML public ImageView imgOriginal;
+	@FXML public ImageView imgProcessada;
 	public Image img1;
 	public Image img2;
 	public Image imgNegativo;
 	public Image imgBrilhoContrasteAjustado;
 	public static detNoduloController instance;
+	Stage stage = new Stage();
 	
 	@FXML
 	public void abrirImagem() {
@@ -38,7 +39,7 @@ public class detNoduloController {
 	public void rodarAlgoritmos() {
 
 		if (img1 != null) {
-			imgNegativo = detNodulos.PreProcessamento.negativa(img1);
+			imgNegativo = img1;
 			abreModalAjusteTonalidade();
 		} else {
 			Util.exibeErro("Erro!", "X", "Não é possível abrir o processamento de imagem sem selecionar uma imagem antes.", AlertType.ERROR);
@@ -52,10 +53,9 @@ public class detNoduloController {
 		mostraImagemProcessada();
 	}
 	
-	private void mostraImagemProcessada() {
-		imgProcessada.setImage(img1);
-		imgProcessada.setFitWidth(img1.getWidth());
-		imgProcessada.setFitHeight(img1.getHeight());
+	public void mostraImagemProcessada() {
+		imgProcessada.setImage(img2);
+		
 	}
 	
 	
@@ -113,7 +113,7 @@ public class detNoduloController {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaImagem.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
+			//Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajuste de Imagem");
 			stage.setScene(new Scene(root1));  
@@ -130,5 +130,21 @@ public class detNoduloController {
 		 instance = this;
 		 
 	 }
-	 
+
+	public ImageView getImgOriginal() {
+		return imgOriginal;
+	}
+
+//	public void setImgOriginal(ImageView imgOriginal) {
+//		this.imgOriginal = imgOriginal;
+//	}
+//
+//	public ImageView getImgProcessada() {
+//		return imgProcessada;
+//	}
+//
+//	public void setImgProcessada(ImageView imgProcessada) {
+//		this.imgProcessada = imgProcessada;
+//	}
+//	 
 }

@@ -2,7 +2,6 @@ package detNodulos.control;
 
 import java.io.IOException;
 
-import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
 import detNodulos.util.Util;
 import javafx.fxml.FXML;
@@ -10,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -27,7 +27,6 @@ public class ViewAjustaImagem {
 	
 	private static final int PAGINA_AJUSTE_TONALIDADE = 0;
 	private static final int PAGINA_AJUSTE_LIMIARIZACAO = 1;
-	private static final int PAGINA_MOSTRA_IMG_SOMADA = 2;
 
 	private static final String CAMINHO_COMPONENTE_VBOXBOTTOM = "../component/VBoxBottom.fxml";
 	
@@ -48,6 +47,8 @@ public class ViewAjustaImagem {
 		adicionaComponentesBottom(PAGINA_AJUSTE_LIMIARIZACAO);
 	}
 	
+	
+	
 	private void setEventBtConfirmarStepOne() {
 		btConfirmar.setOnAction(e -> {
 			try {
@@ -65,6 +66,12 @@ public class ViewAjustaImagem {
 		hbBottom.getChildren().remove(0);
 		if (nextPage == PAGINA_AJUSTE_LIMIARIZACAO) {
 			transformViewStepTwo();
+		} else {
+			//detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
+			detNoduloController.instance.img2 = imgViewEstadoFinal.snapshot(null, null);
+			detNoduloController.instance.mostraImagemProcessada();
+			detNoduloController.instance.stage.close();
+			
 		}
 	}
 
@@ -85,7 +92,7 @@ public class ViewAjustaImagem {
 			constructorVboxSlider(hbBottom, idPage);
 		} else if (idPage == PAGINA_AJUSTE_LIMIARIZACAO) {
 			constructorVboxSlider(hbBottom, idPage);
-		}
+		} 
 	}
 
 	private void adicionaLabelTop(String titulo) throws IOException {
