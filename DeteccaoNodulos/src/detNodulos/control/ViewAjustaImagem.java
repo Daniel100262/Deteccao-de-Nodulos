@@ -21,6 +21,7 @@ public class ViewAjustaImagem {
 	@FXML private Button btConfirmar;
 	@FXML public ImageView imgViewEstadoInicial;
 	@FXML public ImageView imgViewEstadoFinal;
+
 	
 	private int nextPage;
 	
@@ -66,7 +67,6 @@ public class ViewAjustaImagem {
 		} else {
 			//detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
 			detNoduloController.instance.img2 = imgViewEstadoFinal.getImage();
-			detNoduloController.instance.mostraImagemProcessada();
 			detNoduloController.instance.stage.close();
 			
 		}
@@ -79,14 +79,21 @@ public class ViewAjustaImagem {
 	}
 
 	private void adicionaImages() {
-		Image imgNegativa = detNoduloController.instance.imgNegativo;
-		imgViewEstadoInicial.setImage(imgNegativa);
-		imgViewEstadoFinal.setImage(imgNegativa);
+		Image imagemAntesProcessamento = detNoduloController.instance.img1;
+		imgViewEstadoInicial.setImage(imagemAntesProcessamento);
+		imgViewEstadoInicial.setFitHeight(imagemAntesProcessamento.getHeight());
+		imgViewEstadoInicial.setFitWidth(imagemAntesProcessamento.getWidth());
+		imgViewEstadoInicial.setPreserveRatio(true);
+		imgViewEstadoFinal.setImage(imagemAntesProcessamento);
+		imgViewEstadoFinal.setPreserveRatio(true);
+		imgViewEstadoFinal.setFitHeight(imagemAntesProcessamento.getHeight());
+		imgViewEstadoFinal.setFitWidth(imagemAntesProcessamento.getWidth());
 	}
 
 	private void adicionaComponentesBottom(int idPage) throws IOException {
 		if (idPage == PAGINA_AJUSTE_TONALIDADE) {
 			constructorVboxSlider(hbBottom, idPage);
+			detNoduloController.instance.imgNegativo = imgViewEstadoFinal.snapshot(null, null);
 		} else if (idPage == PAGINA_AJUSTE_LIMIARIZACAO) {
 			constructorVboxSlider(hbBottom, idPage);
 		} 

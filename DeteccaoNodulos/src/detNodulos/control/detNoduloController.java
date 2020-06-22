@@ -3,9 +3,9 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
 import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
+import detNodulos.util.Constantes;
 import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -41,8 +41,7 @@ public class detNoduloController {
 	public void rodarAlgoritmos() {
 
 		if (img1 != null) {
-			imgNegativo = img1;
-			imgNegativo = PreProcessamento.cinzaMediaAritmetica(imgNegativo, 0, 0, 0);
+			img1 = PreProcessamento.cinzaMediaAritmetica(img1, 0, 0, 0);
 			abreModalAjusteTonalidade();
 		} else {
 			Util.exibeErro("Erro!", "X", "Não é possível abrir o processamento de imagem sem selecionar uma imagem antes.", AlertType.ERROR);
@@ -52,6 +51,8 @@ public class detNoduloController {
 	
 	
 	public void mostraImagemProcessada() {
+		imgProcessada.setFitHeight(640);
+		imgProcessada.setPreserveRatio(true);
 		imgProcessada.setImage(img2);
 	}
 	
@@ -59,7 +60,7 @@ public class detNoduloController {
 	private Image abreImagem(ImageView imageView, Image image) {
 		File f = selecionaImagem();
 		if(f != null) {
-			image = new Image(f.toURI().toString(), 640, 440, false, false);
+			image = new Image(f.toURI().toString(), 640, 440, true, false);
 			imageView.setImage(image);
 			imageView.setFitWidth(image.getWidth());
 			imageView.setFitHeight(image.getHeight());
@@ -106,7 +107,7 @@ public class detNoduloController {
 	}
 	
 	public void abreModalAjusteTonalidade() {
-		imgNegativo = Segmentacao.posteirizacao(imgNegativo);
+		
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaImagem.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -116,9 +117,13 @@ public class detNoduloController {
 			stage.setScene(new Scene(root1));  
 			stage.showAndWait();
 			
-//			Util.exibeErro("ERRO", "Continuou a execução!", "", AlertType.INFORMATION);
-//			img2 = Segmentacao.equalizacaoHistograma(img2, false);
-			//img2 = Util.adicao(img1, img2, 0.8,  0.30);
+			
+			img2 = Segmentacao.posteirizacao(img2);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			mostraImagemProcessada();
 			
 		} 

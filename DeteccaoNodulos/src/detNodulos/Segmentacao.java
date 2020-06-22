@@ -24,14 +24,12 @@ public class Segmentacao {
 				 for (int j=0; j<h; j++) {
 					 Color corA = pr.getColor(i, j);
 					 Color corN;
-					 
-					 if(corA.getRed()/255 + corA.getBlue()/255 + corA.getGreen()/255 >= 666.0/255.0) {
-						 corN = new Color(1, 1, 1, corA.getOpacity());
+
+					 if(corA.getRed() + corA.getBlue() + corA.getGreen() >= 2.2) {
+						 corN =  Color.rgb(255,0,255,1.0);
 					 }else {
 						 corN = corA;
 					 }
-					 
-					 
 					 pw.setColor(i, j, corN);
 				 }
 			 }
