@@ -46,8 +46,6 @@ public class ViewAjustaImagem {
 		adicionaComponentesBottom(PAGINA_AJUSTE_LIMIARIZACAO);
 	}
 	
-	
-	
 	private void setEventBtConfirmarStepOne() {
 		btConfirmar.setOnAction(e -> {
 			try {

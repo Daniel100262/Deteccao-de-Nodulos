@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
 import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
@@ -27,7 +28,7 @@ public class detNoduloController {
 	public Image imgNegativo;
 	public Image imgBrilhoContrasteAjustado;
 	public static detNoduloController instance;
-	Stage stage = new Stage();
+	Stage stage;
 	
 	@FXML
 	public void abrirImagem() {
@@ -41,6 +42,7 @@ public class detNoduloController {
 
 		if (img1 != null) {
 			imgNegativo = img1;
+			imgNegativo = PreProcessamento.cinzaMediaAritmetica(imgNegativo, 0, 0, 0);
 			abreModalAjusteTonalidade();
 		} else {
 			Util.exibeErro("Erro!", "X", "Não é possível abrir o processamento de imagem sem selecionar uma imagem antes.", AlertType.ERROR);
@@ -104,10 +106,11 @@ public class detNoduloController {
 	}
 	
 	public void abreModalAjusteTonalidade() {
-	
+		imgNegativo = Segmentacao.posteirizacao(imgNegativo);
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detNodulos/view/ViewAjustaImagem.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
+			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajuste de Imagem");
 			stage.setScene(new Scene(root1));  
@@ -116,7 +119,6 @@ public class detNoduloController {
 //			Util.exibeErro("ERRO", "Continuou a execução!", "", AlertType.INFORMATION);
 //			img2 = Segmentacao.equalizacaoHistograma(img2, false);
 			//img2 = Util.adicao(img1, img2, 0.8,  0.30);
-			img2 = Segmentacao.posteirizacao(img2);
 			mostraImagemProcessada();
 			
 		} 
