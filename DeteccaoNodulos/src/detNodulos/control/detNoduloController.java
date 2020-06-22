@@ -124,6 +124,7 @@ public class detNoduloController {
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
+			img2 = Util.adicao(img1, img2, 0.8, 0.3);
 			mostraImagemProcessada();
 			
 		} 

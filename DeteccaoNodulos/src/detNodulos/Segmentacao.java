@@ -26,7 +26,7 @@ public class Segmentacao {
 					 Color corN;
 
 					 if(corA.getRed() + corA.getBlue() + corA.getGreen() >= 2.2) {
-						 corN =  Color.rgb(255,0,255,1.0);
+						 corN =  Color.rgb(255,255,255,1.0);
 					 }else {
 						 corN = corA;
 					 }
