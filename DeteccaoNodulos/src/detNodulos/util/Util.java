@@ -1,6 +1,15 @@
 package detNodulos.util;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.ColorAdjust;
@@ -234,6 +243,55 @@ public class Util {
 	
 	
 	
+	 public static Image mat2Image(Mat imagem) {
+		 MatOfByte buffer = new MatOfByte(); //Buffer para armazenar pixels
+	     Imgcodecs.imencode(".png", imagem, buffer); //Transforma a imagem que estava no buffer em PNG
+	     return new Image(new ByteArrayInputStream(buffer.toArray())); //Transforma MAT em Image e retorna
+	 }
+
+
+	 public static Mat image2Mat(Image imagem) {
+		 BufferedImage bImage = SwingFXUtils.fromFXImage(imagem, null);
+		 return bufferedImage2Mat(bImage);
+	 }
+	
+	 
+	 
+	 
+	 public static Mat bufferedImage2Mat(BufferedImage imagemInicial) {
+		    
+         Mat imagemFinal;
+         byte[] data;
+         int r, g, b;
+         int altura = imagemInicial.getHeight();
+         int largura = imagemInicial.getWidth();
+         if(imagemInicial.getType() == BufferedImage.TYPE_INT_RGB || imagemInicial.getType() == BufferedImage.TYPE_INT_ARGB) {
+             imagemFinal = new Mat(altura, largura, CvType.CV_8UC3);
+             data = new byte[altura * largura * (int)imagemFinal.elemSize()];
+             int[] dataBuff = imagemInicial.getRGB(0, 0, largura, altura, null, 0, largura);
+             for(int i = 0; i < dataBuff.length; i++)
+             {
+                 data[i*3 + 2] = (byte) ((dataBuff[i] >> 16) & 0xFF);
+                 data[i*3 + 1] = (byte) ((dataBuff[i] >> 8) & 0xFF);
+                 data[i*3] = (byte) ((dataBuff[i] >> 0) & 0xFF);
+             }
+         }
+         else
+         {
+             imagemFinal = new Mat(altura, largura, CvType.CV_8UC1);
+             data = new byte[altura * largura * (int)imagemFinal.elemSize()];
+             int[] dataBuff = imagemInicial.getRGB(0, 0, largura, altura, null, 0, largura);
+             for(int i = 0; i < dataBuff.length; i++)
+             {
+               r = (byte) ((dataBuff[i] >> 16) & 0xFF);
+               g = (byte) ((dataBuff[i] >> 8) & 0xFF);
+               b = (byte) ((dataBuff[i] >> 0) & 0xFF);
+               data[i] = (byte)((0.21 * r) + (0.71 * g) + (0.07 * b)); //luminosity
+             }
+          }
+          imagemFinal.put(0, 0, data);
+          return imagemFinal;
+    } 
 	
 	
 	public static void exibeErro(String titulo, String cabecalho, String msg, AlertType tipoAlerta) {

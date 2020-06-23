@@ -3,6 +3,13 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
+import detNodulos.ClassReco;
 import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
 import detNodulos.util.Constantes;
@@ -125,6 +132,10 @@ public class detNoduloController {
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			img2 = Util.adicao(img1, img2, 0.8, 0.3);
+			//Mat img2Mat = Util.image2Mat(img2);
+			
+			img2 = ClassReco.detectaNodulo(img2);
+			
 			mostraImagemProcessada();
 			
 		} 
@@ -133,6 +144,7 @@ public class detNoduloController {
 			erro.printStackTrace();
 		}
 	}
+	
 	
 	 public void initialize() {
 		 instance = this;
