@@ -58,4 +58,51 @@ public class PreProcessamento {
 			return null;
 		}
 	}
+	
+	public static Image posterizeImage(Image img) {
+		try {
+
+			int w = (int)img.getWidth();
+			int h = (int)img.getHeight();
+
+			PixelReader pr = img.getPixelReader();
+			WritableImage wi = new WritableImage(w,h);
+			PixelWriter pw = wi.getPixelWriter();
+
+			double red = 0;
+			double green = 0;
+			double blue = 0;
+
+			for (int i=0; i<w; i++) {
+				for (int j=0; j<h; j++) {
+					Color corA = pr.getColor(i, j);
+					red = posterizeRGB(corA.getRed());
+					green = posterizeRGB(corA.getGreen());
+					blue = posterizeRGB(corA.getBlue());
+					Color corN = new Color ( red,  green,  blue, corA.getOpacity());
+					pw.setColor(i, j, corN); 
+				}
+			}
+			return wi;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	private static double posterizeRGB(double value) {
+		double intencidade = 0;
+		if (value< 64.0/255.0) {
+			intencidade = 31.0/255.0;
+		} else if (value > 63.0/255 && value < 128.0/255.0) {
+			intencidade = 95.0/255.0;
+		} else if (value>127.0/255.0 && value<192.0/255.0) {
+			intencidade = 159.0/255.0;
+		} else if (value>191.0/255.0 && value<256.0/255.0) {
+			intencidade = 223.0/255.0;
+		}
+		return intencidade;
+	}
+	
+	
 }

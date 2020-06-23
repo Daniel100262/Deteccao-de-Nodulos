@@ -1,5 +1,7 @@
 package detNodulos;
 	
+import org.opencv.core.Core;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -24,6 +26,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		launch(args);
 	}
 }

@@ -2,6 +2,8 @@ package detNodulos.control;
 
 import java.io.IOException;
 
+
+import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
 import detNodulos.util.Util;
 import javafx.fxml.FXML;
@@ -63,12 +65,12 @@ public class ViewAjustaImagem {
 		hbBottom.getChildren().remove(0);
 		hbBottom.getChildren().remove(0);
 		if (nextPage == PAGINA_AJUSTE_LIMIARIZACAO) {
+			imgViewEstadoFinal.setImage(PreProcessamento.posterizeImage(imgViewEstadoFinal.snapshot(null, null)));
 			transformViewStepTwo();
 		} else {
-			//detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
+			detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
 			detNoduloController.instance.img2 = imgViewEstadoFinal.getImage();
 			detNoduloController.instance.stage.close();
-			
 		}
 	}
 
