@@ -1,8 +1,6 @@
 package detNodulos.control;
 
 import java.io.IOException;
-
-
 import detNodulos.PreProcessamento;
 import detNodulos.Segmentacao;
 import detNodulos.util.Util;
@@ -29,7 +27,6 @@ public class ViewAjustaImagem {
 	
 	private static final int PAGINA_AJUSTE_TONALIDADE = 0;
 	private static final int PAGINA_AJUSTE_LIMIARIZACAO = 1;
-
 	private static final String CAMINHO_COMPONENTE_VBOXBOTTOM = "../component/VBoxBottom.fxml";
 	
 	public void initialize() throws IOException {
@@ -67,9 +64,8 @@ public class ViewAjustaImagem {
 		if (nextPage == PAGINA_AJUSTE_LIMIARIZACAO) {
 			imgViewEstadoFinal.setImage(PreProcessamento.posterizeImage(imgViewEstadoFinal.snapshot(null, null)));
 			transformViewStepTwo();
-		} else {
-			detNoduloController.instance.imgProcessada = imgViewEstadoFinal;
-			detNoduloController.instance.img2 = imgViewEstadoFinal.getImage();
+		} else {		
+			detNoduloController.instance.img2 = imgViewEstadoFinal.snapshot(null, null);
 			detNoduloController.instance.stage.close();
 		}
 	}

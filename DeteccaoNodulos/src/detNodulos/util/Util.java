@@ -3,12 +3,12 @@ package detNodulos.util;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
-
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
-
+import org.opencv.imgproc.Imgproc;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -292,6 +292,20 @@ public class Util {
           imagemFinal.put(0, 0, data);
           return imagemFinal;
     } 
+	 
+	 
+	    public static Image dilatacao(int dilation_size, Mat source) {
+	        
+	        Mat destination = new Mat(source.rows(),source.cols(),source.type());
+	        
+	        destination = source;
+	        
+	        Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new  Size(2*dilation_size+1, 2*dilation_size+1));
+	        Imgproc.dilate(source, destination, element);
+	        
+	        Image img = Util.mat2Image(destination);
+	        return img;
+		}
 	
 	
 	public static void exibeErro(String titulo, String cabecalho, String msg, AlertType tipoAlerta) {

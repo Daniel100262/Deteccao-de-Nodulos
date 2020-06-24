@@ -3,15 +3,7 @@ package detNodulos.control;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
-import detNodulos.ClassReco;
 import detNodulos.PreProcessamento;
-import detNodulos.Segmentacao;
 import detNodulos.util.Constantes;
 import detNodulos.util.Util;
 import javafx.embed.swing.SwingFXUtils;
@@ -124,17 +116,17 @@ public class detNoduloController {
 			stage.setScene(new Scene(root1));  
 			stage.showAndWait();
 			
-			
-			img2 = Segmentacao.posteirizacao(img2);
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
 			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
-			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
-			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
-			img2 = Util.ruidos(img2, Constantes.VIZINHOS3x3);
-			img2 = Util.adicao(img1, img2, 0.8, 0.3);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOSCRUZ);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOSCRUZ);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOSX);
+			img2 = Util.ruidos(img2, Constantes.VIZINHOSX);
+			img2 = Util.adicao(img1, img2, 0.8, 0.2);
 			//Mat img2Mat = Util.image2Mat(img2);
 			
-			img2 = ClassReco.detectaNodulo(img2);
+		
+			//img2 = ClassReco.detectaNodulo(img2);
 			
 			mostraImagemProcessada();
 			

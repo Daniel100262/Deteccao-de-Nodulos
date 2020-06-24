@@ -3,11 +3,10 @@ package detNodulos;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-
 import detNodulos.util.Util;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 
 public class ClassReco {
 
@@ -46,4 +45,29 @@ public class ClassReco {
 			return null;
 		}
 	}
+	
+	
+	public static Image doCanny(Mat imagem, Double limiar) {
+
+		Mat imgEscalaCinza = new Mat();
+		Mat bordasDetectadas = new Mat();
+		
+		imgEscalaCinza = imagem;
+		
+		//Imgproc.cvtColor(imagem, imgEscalaCinza, Imgproc.COLOR_BGR2GRAY); //Converte p/ escala de cinza
+		Imgproc.blur(imgEscalaCinza, bordasDetectadas, new Size(5, 5)); //Reduz ruido com um kernel de 3x3
+		Imgproc.Canny(bordasDetectadas, bordasDetectadas, limiar, limiar * 3);//Roda canny numa proporção menor:maior de 3:1
+		
+		Mat dest = new Mat();
+		imagem.copyTo(dest, bordasDetectadas);
+		
+		
+		
+		Image img = Util.mat2Image(dest);
+		
+		//img = Erosao.doBackgroundRemoval(dest);
+		
+		return img;
+	}
+	
 }
